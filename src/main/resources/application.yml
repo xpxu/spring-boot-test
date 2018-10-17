@@ -1,0 +1,35 @@
+server:
+  port: 19990
+
+spring:
+  application:
+    name: boot-xp-test
+
+ribbon:
+  ConnectTimeout: 800
+  ReadTimeout: 2000
+  MaxAutoRetries: 2 # 单个ip重试次数，重试完成后，再换另一个ip. 单台机器上回重试3次
+  MaxAutoRetriesNextServer: 4 # 循环次数
+
+httpclient:
+  socket_timeout: 1000
+  connect_timeout: 500
+  connect_pool_size: 500
+  connect_pool_max_per_route: 50
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://10.1.5.164:14101/eureka/
+    healthcheck:
+      enabled: true
+
+feign:
+  hystirx:
+    enabled: false
+
+logging:
+  level:
+    org:
+      springframework:
+        retry: debug
